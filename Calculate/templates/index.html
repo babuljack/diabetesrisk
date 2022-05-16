@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Diabetes risk assessment</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <style>
+
+    .lds-dual-ring.hidden {
+        display: none;
+    }
+    /*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/
+    .overlay {
+        position: fixed;
+        bottom:0;
+        left: 47%;
+        width: 100%;
+        height: 100vh;
+        z-index: 999;
+        opacity: 1;
+        transition: all 0.5s;
+    }
+    
+    /*Spinner Styles*/
+    .lds-dual-ring {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 5% auto;
+        border-radius: 50%;
+        border: 6px solid red;
+        border-color: black transparent black transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+.details:hover{
+background-color: pink !important;
+}
+</style>
+</head>
+<body>
+
+
+    <body>
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-primary">
+            <div class="container">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              </button>
+              <a class="navbar-brand" href="/">Type 2 Diabetes risk calculator</a>
+              <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                
+        
+          
+              </div>
+            </div>
+          </nav>
+    
+         <br>
+         <br>
+         <br> 
+    
+    
+    <div class="container">
+          <h3 class="text-center">Diabetes risk assessment tool</h3>
+        <hr>
+        
+        <div class="bg-light shadow p-2">
+            <form id="form" class="form-horizontal" autocomplete="off"  >
+            
+    <div class="row">
+            <!-- Multiple Radios -->
+            <div class="form-group col-md-6">
+              <label class=" control-label" for="age">Your age group</label>
+              <div class="">
+              <div class="radio" id="age">
+                <label for="age-0">
+                  <input type="radio" name="age" id="age-0" value="0" checked="checked">
+                  Under 35 years [0 points]
+                </label>
+                </div>
+              <div class="radio">
+                <label for="age-1">
+                  <input type="radio" name="age" id="age-1" value="2">
+                  35 to 44 years [2 points]
+                </label>
+                </div>
+                  <div class="radio">
+                <label for="age-2">
+                  <input type="radio" name="age" id="age-2" value="4">
+                  45 to 54 years [4 points]
+                </label>
+                </div>
+                  <div class="radio">
+                <label for="age-3">
+                  <input type="radio" name="age" id="age-3" value="6">
+                  55 to 64 years [6 points]
+                </label>
+                </div>
+                   <div class="radio">
+                <label for="age-4">
+                  <input type="radio" name="age" id="age-4" value="8">
+                  65 years or over [8 points]
+                </label>
+                </div>
+              </div>
+            </div>
+        <!-- Multiple Radios -->
+            <div class="form-group col-md-6">
+              <label class=" control-label" for="gender">Your gender</label>
+              <div class="">
+              <div class="radio" id="gender">
+                <label for="gender-0">
+                  <input type="radio" name="gender" id="gender-0" value="3" checked="checked">
+                  Male [3 points]
+                </label>
+                </div>
+              <div class="radio">
+                <label for="gender-1">
+                  <input type="radio" name="gender" id="gender-1" value="0">
+                  Female [0 points]
+                </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label class=" control-label" for="born-place">Are you of Aboriginal, Torres Strait Islander, Pacific Islander or Maori descent?</label>
+                <div class="">
+                <div class="radio" id="born-place">
+                  <label for="born-place-0">
+                    <input type="radio" name="aboriginal" id="born-place-0" value="0" checked="checked">
+                    No [0 points]
+                  </label>
+                  </div>
+                <div class="radio">
+                  <label for="born-place-1">
+                    <input type="radio" name="aboriginal" id="born-place-1" value="2">
+                    Yes [2 points]
+                  </label>
+                  </div>
+                </div>
+              </div>
+        <!-- Multiple Radios -->
+            <div class="form-group col-md-6">
+              <label class=" control-label" for="born-place">Where were you born?</label>
+              <div class="">
+              <div class="radio" id="born-place">
+                <label for="born-place-0">
+                  <input type="radio" name="born-place" id="born-place-0" value="2" checked="checked">
+                  Asia, India, Middle East, North Africa, Southern Europe [2 points]
+                </label>
+                </div>
+              <div class="radio">
+                <label for="born-place-1">
+                  <input type="radio" name="born-place" id="born-place-1" value="0">
+                  Other [0 points]
+                </label>
+                </div>
+              </div>
+            </div>
+               <!-- Multiple Radios -->
+           
+        <!-- Multiple Radios -->
+            <div class="form-group col-md-6">
+              <label class=" control-label" for="family-history">Have either of your parents, or any of your brothers or sisters been diagnosed with diabetes (type 1 or type 2)? </label>
+              <div class="">
+              <div class="radio" id="family-history">
+                <label for="family-history-0">
+                  <input type="radio" name="family-history" id="family-history-0" value="0" checked="checked">
+                  No [0 points]
+                </label>
+                </div>
+              <div class="radio">
+                <label for="family-history-1">
+                  <input type="radio" name="family-history" id="family-history-1" value="3">
+                  Yes [3 points]
+                </label>
+                </div>
+              </div>
+            </div>
+        <!-- Multiple Radios -->
+            <div class="form-group col-md-6">
+              <label class=" control-label" for="HBG">Have you ever been found to have high blood glucose (sugar) (for example, in a health examination, during an illness, or during pregnancy)?</label>
+              <div class="">
+              <div class="radio" id="HBG">
+                <label for="HBG-0">
+                  <input type="radio" name="HBG" id="HBG-0" value="0" checked="checked">
+                  No [0 points]
+                </label>
+                </div>
+              <div class="radio">
+                <label for="HGB-1">
+                  <input type="radio" name="HBG" id="HBG-1" value="6">
+                  Yes [6 points]
+                </label>
+                </div>
+              </div>
+            </div>
+        <!-- Multiple Radios -->
+            <div class="form-group col-md-6">
+              <label class=" control-label" for="HBP">Are you currently taking medication for high blood pressure?</label>
+              <div class="">
+              <div class="radio" id="HBP">
+                <label for="HBP-0">
+                  <input type="radio" name="HBP" id="HBP-0" value="0" checked="checked">
+                  No [0 points]
+                </label>
+                </div>
+              <div class="radio">
+                <label for="HBP-1">
+                  <input type="radio" name="HBP" id="HBP-1" value="2">
+                  Yes [2 points]
+                </label>
+                </div>
+              </div>
+            </div>
+        <!-- Multiple Radios -->
+            <div class="form-group col-md-6">
+              <label class=" control-label" for="smoker">Do you currently smoke cigarettes or any other tobacco products on a daily basis?</label>
+              <div class="">
+              <div class="radio" >
+                <label for="smoker-0">
+                  <input type="radio" name="smoker" id="smoker-0" value="0">
+                  No [0 points]
+                </label>
+                </div>
+              <div class="radio">
+                <label for="smoker-1">
+                  <input type="radio" name="smoker" id="smoker-1" value="2" checked="checked">
+                  Yes [2 points]
+                </label>
+                </div>
+              </div>
+            </div>
+        <!-- Multiple Radios -->
+            <div class="form-group col-md-6">
+                <label class=" control-label" for="eat-veges">How often do you eat vegetables or fruit?</label>
+                <div class="">
+                <div class="radio">
+                  <label for="eat-veges-0">
+                    <input type="radio" name="eat-veges" id="eat-veges-0" value="0" checked="checked">
+                    Every day [0 points]
+                  </label>
+                  </div>
+                <div class="radio">
+                  <label for="eat-veges-1">
+                    <input type="radio" name="eat-veges" id="eat-veges-1" value="1">
+                    Not every day [1 point]
+                  </label>
+                  </div>
+                </div>
+              </div>
+            <!-- Multiple Radios -->
+            <div class="form-group col-md-6">
+              <label class=" control-label" for="activity">On average, would you say you do at least 2.5 hours of physical activity per week (for example, 30 minutes a day on 5 or more days a week)?</label>
+              <div class="">
+              <div class="radio" id="activity">
+                <label for="activity-0">
+                  <input type="radio" name="activity" id="activity-0" value="0" checked="checked">
+                  Yes [0 points]
+                </label>
+                </div>
+              <div class="radio">
+                <label for="activity-1">
+                  <input type="radio" name="activity" id="activity-1" value="2">
+                  No [2 points]
+                </label>
+                </div>
+              </div>
+            </div>
+    
+        <!-- Text input-->
+            <div class="form-group col-md-6">
+              <label class="control-label" for="waist-mesurement"> What is your waist measurement?</label>
+              <div class="">
+              <input id="waist-mesurement" name="waist-mesurement" type="number" placeholder="in cm" class="form-control input-md" required="required">
+              </div>
+            </div>
+    
+    </div>
+        
+        </div>	
+    
+        <div class="bt text-center d-block">
+            <button type="submit" class="btn mt-4 btn-primary">Calculate</button>
+        </div>
+        
+    
+    </form>
+    
+    <div id="loader" class="lds-dual-ring hidden overlay mt-2 "></div>
+    
+    <div class="click-result">
+         <h3 class="result text-center my-1 mt-3" style="display:none;"> || Results || </h3>
+    <hr>
+        <div class=" success p-3" >
+         
+             <div class="low  p-2 m-2 w-50 shadow mx-auto" style="display: none;">    
+                  <div class="alert alert-success text-center" role="alert">
+                    You have scored <span class="score">None</span> points
+                  </div>
+                  <ul>
+                      <li class="text-success">Risk: Low</li>
+                  </ul>
+                  <hr>
+                  <i>This means you are at low risk of developing type 2 diabetes within 5 years. It is important you continue to maintain a healthy lifestyle.</i>
+             </div>
+
+             <div class="moderate  p-2 m-2 w-50 shadow mx-auto" style="display: none;">    
+                <div class="alert alert-primary text-center" role="alert">
+                  You have scored <span class="score">None</span> points
+                </div>
+                <ul>
+                    <li class="text-primary">Risk: Moderate</li>
+                </ul>
+                <hr>
+                <i>This means you are at Moderate of developing diabetes within 5 years. Maintain Healthy in Proper way </i>
+           </div>
+
+           <div class="high  p-2 m-2 w-50 shadow mx-auto" style="display: none;">    
+            <div class="alert alert-warning text-center" role="alert">
+              You have scored <span class="score">None</span> points
+            </div>
+            <ul>
+                <li class="text-danger">Risk: High</li>
+            </ul>
+            <hr>
+            <i>This means you are at high risk of developing diabetes within 5 years. Go to your doctor regularly</i>
+       </div>
+       <div class="very  p-2 m-2 w-50 shadow mx-auto" style="display: none;">    
+        <div class="alert alert-danger text-center" role="alert">
+          You have scored <span class="score">None</span> points
+        </div>
+        <ul>
+            <li class="text-danger">Risk: Very High</li>
+        </ul>
+        <hr>
+        <i>This means you are at high risk of developing diabetes within 5 years. See your doctor and maintain all the rule regularly. It's critical situation.</i>
+   </div>
+
+    
+    
+        </div>
+        <div class="text-center failed shadow m-3 p-3 bg-danger text-white" style="display:none;"> 
+             
+            <h3 class="">Something Wrong!</h3>
+            <li>Please Try again.</li>
+            <li>Please check Internet.</li>
+        </div>
+    
+    
+    </div>
+    
+     
+    
+    
+    </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+
+
+
+<script>
+$(document).ready(function () {
+
+
+
+$('#form').submit(function(e){
+e.preventDefault()
+
+    const age=$("input[name='age']:checked").val();
+    const gender=$("input[name='gender']:checked").val();
+    const born=$("input[name='born-place']:checked").val();
+    const diagnosed=$("input[name='family-history']:checked").val();
+    const hbg=$("input[name='HBG']:checked").val();
+    const hbp=$("input[name='HBP']:checked").val();
+    const smoke=$("input[name='smoker']:checked").val();
+    const activity=$("input[name='activity']:checked").val();
+    const fruitVeg=$("input[name='eat-veges']:checked").val();
+    const waist=$('#waist-mesurement').val();
+    const aboriginal=$("input[name='aboriginal']:checked").val();
+
+
+    data={
+		'age':age,
+        'gender':gender,
+        'aboriginal':aboriginal,
+        'born':born,
+        'diagnosed':diagnosed,
+        'hbp':hbp,
+        'hbg':hbg,
+        'smoke':smoke,
+        'activity':activity,
+        'fruitVeg':fruitVeg,
+        'waist': waist,
+
+	};
+
+   console.log(data) 
+	$('.result').show()
+
+	$.ajax({
+        url:'/Dcal',
+		data:data,
+        dataType: "json",
+		beforeSend: function (){
+			
+            $('#loader').show()
+			
+
+		},
+        success: function (res) {
+		   $('#loader').hide()
+		   $('.click-result').show()
+           $('.success').show()
+		   $('.failed').hide()
+           $('.mark').hide()
+           const score=res.data
+           if(score <= 8 ){
+               $('.low').show()
+           } else{
+            $('.low').hide()
+           }
+           if ((score > 8) & (score <= 11)) {
+            $('.moderate').show()
+           }else{
+            $('.moderate').hide() 
+           }
+           if ((score > 11) & (score <= 20)){
+            $('.high').show()
+           }else{
+            $('.high').hide()  
+           }
+		   if (score > 20){
+            $('.very').show()
+           }else{
+            $('.very').hide() 
+           }
+
+           $('.score').text(score);
+        },
+        error: function (request, status, error) {
+			$('#loader').hide()
+			$('.click-result').show()
+			$('.result').hide()
+            $('.success').hide()
+			$('.failed').show()
+		            
+           
+        }
+    }); 
+})
+
+
+
+
+
+})
+
+</script>
+
+
+</body>
+</html>
